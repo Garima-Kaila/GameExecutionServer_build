@@ -8,4 +8,4 @@ RUN cd gee && npm install
 
 EXPOSE  9001
 
-CMD ["node", "/server/app.js"]
+CMD ["node", "/gee/server/app.js"]
