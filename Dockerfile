@@ -8,4 +8,6 @@ RUN cd gee && npm install
 
 EXPOSE  9001
 
+ENV NODE_ENV production
+
 CMD ["node", "/gee/server/app.js"]
