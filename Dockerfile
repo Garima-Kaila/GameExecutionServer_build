@@ -6,8 +6,9 @@ RUN apt-get install -y nodejs nodejs-legacy npm
 COPY . gee/
 RUN cd gee && npm install
 
-EXPOSE  9001
+EXPOSE  8080
 
+ENV PORT 8080
 ENV NODE_ENV production
 
 CMD ["node", "/gee/server/app.js"]
