@@ -61,7 +61,7 @@ var _environment2 = _interopRequireDefault(_environment);
 
 exports['default'] = function (app) {
   var env = app.get('env');
-  console.log(_environment2['default'].root);
+  //console.log(config.root);
   app.set('views', _environment2['default'].root + '/server/views');
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
