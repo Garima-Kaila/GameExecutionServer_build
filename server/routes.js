@@ -7,7 +7,7 @@
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
 
 Object.defineProperty(exports, '__esModule', {
-  value: true
+    value: true
 });
 
 var _componentsErrors = require('./components/errors');
@@ -19,16 +19,16 @@ var _path = require('path');
 var _path2 = _interopRequireDefault(_path);
 
 exports['default'] = function (app) {
-  // Insert routes below
-  app.use('/api/execute', require('./api/executor'));
+    // Insert routes below
+    app.use('/api/execute', require('./api/executor'));
 
-  // All undefined asset or api routes should return a 404
-  app.route('/:url(api|auth|components|app|bower_components|assets)/*').get(_componentsErrors2['default'][404]);
+    // All undefined asset or api routes should return a 404
+    app.route('/:url(api|auth|components|app|bower_components|assets)/*').get(_componentsErrors2['default'][404]);
 
-  // All other routes should redirect to the index.html
-  app.route('/*').get(function (req, res) {
-    res.sendFile(_path2['default'].resolve(app.get('appPath') + '/index.html'));
-  });
+    // All other routes should redirect to the index.html
+    app.route('/*').get(function (req, res) {
+        res.sendFile(_path2['default'].resolve(app.get('appPath') + '/index.html'));
+    });
 };
 
 module.exports = exports['default'];

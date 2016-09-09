@@ -46,30 +46,22 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-var _lusca = require('lusca');
-
-var _lusca2 = _interopRequireDefault(_lusca);
+//import lusca from 'lusca';
 
 var _environment = require('./environment');
 
 var _environment2 = _interopRequireDefault(_environment);
 
-var _passport = require('passport');
-
-var _passport2 = _interopRequireDefault(_passport);
-
-var _expressSession = require('express-session');
-
-var _expressSession2 = _interopRequireDefault(_expressSession);
-
+//import passport from 'passport';
+//import session from 'express-session';
 /*import connectMongo from 'connect-mongo';
-import mongoose from 'mongoose';
-var mongoStore = connectMongo(session);
-*/
+ import mongoose from 'mongoose';
+ var mongoStore = connectMongo(session);
+ */
 
 exports['default'] = function (app) {
   var env = app.get('env');
-
+  console.log(_environment2['default'].root);
   app.set('views', _environment2['default'].root + '/server/views');
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
@@ -84,34 +76,34 @@ exports['default'] = function (app) {
   // We need to enable sessions for passport-twitter because it's an
   // oauth 1.0 strategy, and Lusca depends on sessions
   /*  app.use(session({
-      secret: config.secrets.session,
-      saveUninitialized: true,
-      resave: false,
-      store: new mongoStore({
-        mongooseConnection: mongoose.connection,
-        db: 'game-execution-server'
-      })
-    }));
-  */
+   secret: config.secrets.session,
+   saveUninitialized: true,
+   resave: false,
+   store: new mongoStore({
+   mongooseConnection: mongoose.connection,
+   db: 'game-execution-server'
+   })
+   }));
+   */
   /**
    * Lusca - express server security
    * https://github.com/krakenjs/lusca
    */
   /*  if ('test' !== env) {
-      app.use(lusca({
-        csrf: {
-          angular: true
-        },
-        xframe: 'SAMEORIGIN',
-        hsts: {
-          maxAge: 31536000, //1 year, in seconds
-          includeSubDomains: true,
-          preload: true
-        },
-        xssProtection: true
-      }));
-    }
-  */
+   app.use(lusca({
+   csrf: {
+   angular: true
+   },
+   xframe: 'SAMEORIGIN',
+   hsts: {
+   maxAge: 31536000, //1 year, in seconds
+   includeSubDomains: true,
+   preload: true
+   },
+   xssProtection: true
+   }));
+   }
+   */
   app.set('appPath', _path2['default'].join(_environment2['default'].root, 'client'));
 
   if ('production' === env) {

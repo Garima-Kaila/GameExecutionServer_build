@@ -10,23 +10,23 @@ var app = require('../..');
 
 describe('Error Redirection:', function () {
 
-  describe('GET /api/unknownpath', function () {
-    var text;
-    beforeEach(function (done) {
-      (0, _supertest2['default'])(app).get('/api/unknownpath').send().expect(404).end(function (err, res) {
-        if (err) {
-          return done(err);
-        }
+    describe('GET /api/unknownpath', function () {
+        var text;
+        beforeEach(function (done) {
+            (0, _supertest2['default'])(app).get('/api/unknownpath').send().expect(404).end(function (err, res) {
+                if (err) {
+                    return done(err);
+                }
 
-        text = JSON.stringify(res);
+                text = JSON.stringify(res);
 
-        done();
-      });
+                done();
+            });
+        });
+
+        it('should respond with text containing  : Page Not Found', function () {
+            expect(text).to.have.string("Page Not Found");
+        });
     });
-
-    it('should respond with text containing  : Page Not Found', function () {
-      expect(text).to.have.string("Page Not Found");
-    });
-  });
 });
 //# sourceMappingURL=error.integration.js.map

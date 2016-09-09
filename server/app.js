@@ -26,9 +26,9 @@ require('./routes')(app);
 
 // Start server
 function startServer() {
-  app.angularFullstack = server.listen(_configEnvironment2['default'].port, _configEnvironment2['default'].ip, function () {
-    console.log('Express server listening on %d, in %s mode', _configEnvironment2['default'].port, app.get('env'));
-  });
+    app.angularFullstack = server.listen(_configEnvironment2['default'].port, _configEnvironment2['default'].ip, function () {
+        console.log('Express server listening on %d, in %s mode', _configEnvironment2['default'].port, app.get('env'));
+    });
 }
 
 setImmediate(startServer);

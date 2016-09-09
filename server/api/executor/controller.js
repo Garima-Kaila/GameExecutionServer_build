@@ -1,20 +1,14 @@
 'use strict';
 
-var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
+//import _ from 'lodash';
+//var Slot_Server = require('Slot_Server');
+//var JackOrBetter_Server = require('JackOrBetter_Server');
 
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 exports.getCachedGames = getCachedGames;
 exports.execute = execute;
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var Slot_Server = require('Slot_Server');
-var JackOrBetter_Server = require('JackOrBetter_Server');
-
 var cache = {};
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -49,7 +43,7 @@ function getCachedGames(req, res) {
 }
 
 function execute(req, res) {
-    console.log(req.body);
+    //console.log(req.body);
     var game = req.body.game,
         action = req.body.action;
 
@@ -62,33 +56,16 @@ function execute(req, res) {
         restoredData: req.body.restoredData,
         cheat: req.body.cheat
     };
-    console.log("GEE : execute", game, action);
-    console.log(req.body);
+    //console.log("GEE : execute", game, action);
+    //console.log(req.body);
 
-    console.log("1");
-    console.log(cache);
     if (!cache[game]) {
-        console.log("2");
         cache[game] = require(game);
     }
-    console.log("3");
-
-    console.log(game, action, params);
-    console.log("4");
 
     var gameResponse = {};
-    try {
-        console.log("5");
-        console.log(cache);
-        console.log(cache[game]);
-        console.log(cache[game][action]);
-
-        gameResponse = cache[game][action](params);
-    } catch (ex) {
-        console.log("6");
-        console.log(ex);
-    }
-    console.log("gameResponse", gameResponse);
+    gameResponse = cache[game][action](params);
+    //    console.log("gameResponse", gameResponse);
     respondWithResult(res, 200)(gameResponse);
 }
 //# sourceMappingURL=controller.js.map
