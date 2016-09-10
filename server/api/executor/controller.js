@@ -4,11 +4,18 @@
 //var Slot_Server = require('Slot_Server');
 //var JackOrBetter_Server = require('JackOrBetter_Server');
 
+var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
+
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
 exports.getCachedGames = getCachedGames;
 exports.execute = execute;
+
+var _logger = require('logger');
+
+var _logger2 = _interopRequireDefault(_logger);
+
 var cache = {};
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -43,7 +50,6 @@ function getCachedGames(req, res) {
 }
 
 function execute(req, res) {
-    //console.log(req.body);
     var game = req.body.game,
         action = req.body.action;
 
@@ -54,17 +60,16 @@ function execute(req, res) {
         betLevelIdx: req.body.betLevelIdx ? parseFloat(req.body.betLevelIdx) : 0,
         isRestore: req.body.isRestore || false,
         restoredData: req.body.restoredData,
-        cheat: req.body.cheat
+        cheat: req.body.cheat,
+        roundId: req.body.roundId
     };
-    //console.log("GEE : execute", game, action);
-    //console.log(req.body);
+
+    _logger2['default'].trace(game, params.roundId, "GES", "execute", action);
 
     if (!cache[game]) {
         cache[game] = require(game);
     }
-
     var gameResponse = cache[game][action](params);
-    //    console.log("gameResponse", gameResponse);
     respondWithResult(res, 200)(gameResponse);
 }
 //# sourceMappingURL=controller.js.map
